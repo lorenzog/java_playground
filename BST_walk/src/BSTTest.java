@@ -47,7 +47,7 @@ public class BSTTest {
 	@Test
 	public void testWalkEmptyTree() {
 		BST tree = new BST();
-		ArrayList<Integer> result = tree.walk(tree.getRoot());
+		ArrayList<Integer> result = tree.recursiveWalk(tree.getRoot());
 		assertEquals(result.size(), 0);
 	}
 	
@@ -72,11 +72,19 @@ public class BSTTest {
 		System.out.println();
 		Collections.sort(values);
 		System.out.println("sorted: " + values.toString());
-		ArrayList<Integer> result = tree.walk(tree.getRoot());
-		System.out.println("tree walk: " + result.toString());
-		for ( int i = 0 ; i < result.size() ; i++ )
-			assertEquals(values.get(i),result.get(i));
-
+		
+		// testing recursive walk
+		ArrayList<Integer> recursiveWalkResult = tree.recursiveWalk(tree.getRoot());
+		System.out.println("recursive tree walk: " + recursiveWalkResult.toString());
+		for ( int i = 0 ; i < recursiveWalkResult.size() ; i++ )
+			assertEquals(values.get(i),recursiveWalkResult.get(i));
+		
+		// testing non-recursive walk
+		ArrayList<Integer> nonRecursiveWalkResult = tree.nonRecursiveWalk(tree.getRoot());
+		System.out.println("non-recursive tree walk: " + recursiveWalkResult.toString());
+		for ( int i = 0 ; i < nonRecursiveWalkResult.size() ; i++ )
+			assertEquals(values.get(i),nonRecursiveWalkResult.get(i));
+		
 	}
 
 }
