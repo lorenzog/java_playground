@@ -33,6 +33,12 @@ public class BST {
 	
 	/**
 	 * a textbook example, with recursion
+	 * usual problems: with deep trees the recursion overhead could become
+	 * significant
+	 * 
+	 * complexity comparable to the height of the tree. As this is just a 
+	 * binary search tree (and not a RB tree or similar), there is 
+	 * no guarantee that the height of the tree is kept roughly constant.
 	 * 
 	 * inspired by: Introduction to Algorithms, second edition 
 	 * 	(Cormen, Leiserson, Rivest, Stein), Chapter 12.
@@ -40,11 +46,11 @@ public class BST {
 	 * @param n a node belonging to the tree; root is fine
 	 * @return an array of the elements in order
 	 */
-	// moved out otherwise it stays local to the function, and good-bye recursions
-	// TODO obviously this would be locked if accessed from many sources
-	// or, encapsulate into another function
 	public ArrayList<Integer> recursiveWalk(Node n) {
 		ArrayList<Integer> out = new ArrayList<Integer>();
+		// using a hidden function to build the result in an arraylist without
+		// having to make it available outside this function 
+		// (which could be a problem for parallel processing, etc.)
 		_recursiveWalk(n, out);
 		return out;
 	}
@@ -62,6 +68,9 @@ public class BST {
 	/**
 	 * a non-recursive version, using a stack
 	 * (useful for deep trees, when memory is an issue for recursion)
+	 * 
+	 * other examples could modify the nodes, adding 'visited' fields, 
+	 * but I wanted to keep this simple without changing the original data structure.
 	 * 
 	 * inspired by: https://web.cs.dal.ca/~sedgwick/3110/a9_soln.txt
 	 */
