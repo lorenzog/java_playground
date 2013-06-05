@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class BST {
 	Node root;
 
@@ -30,15 +32,20 @@ public class BST {
 	
 	/**
 	 * a textbook example, with recursion
+	 * 
 	 * @param n a node belonging to the tree; root is fine
+	 * @return an array of the elements in order
 	 */
-	public void walk(Node n) {
+	// moved out otherwise it stays local to the function, and good-bye recursions
+	ArrayList<Integer> out = new ArrayList<Integer>();
+	public ArrayList<Integer> walk(Node n) {
+		
 		if ( n != null )
 		{
 			walk(n.getLeftChild());
-			System.out.print(" " + n.value);
+			out.add(n.value);
 			walk(n.getRightChild());
 		}
-			
+		return out;
 	}
 }
